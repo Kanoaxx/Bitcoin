@@ -1,0 +1,37 @@
+// Simula uma API para obter os dados da carteira
+const api = {
+  getCarteira: () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve([
+          { nome: 'Bitcoin', quantidade: 1.5, valor: 10000 },
+          { nome: 'Ethereum', quantidade: 2.5, valor: 5000 },
+          { nome: 'Litecoin', quantidade: 3.5, valor: 2000 },
+        ]);
+      }, 2000);
+    });
+  },
+};
+
+// Função para exibir a carteira
+const exibirCarteira = async () => {
+  const carteira = await api.getCarteira();
+  const carteiraContent = document.getElementById('carteira-content');
+  carteiraContent.innerHTML = '';
+  carteira.forEach((moeda) => {
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <h3>${moeda.nome}</h3>
+      <p>Quantidade: ${moeda.quantidade}</p>
+      <p>Valor: ${moeda.valor}</p>
+    `;
+    carteiraContent.appendChild(div);
+  });
+};
+
+// Função para lidar com o login
+const login = async (email, senha) => {
+  // Simula uma API para autenticar o usuário
+  const apiLogin = {
+    autenticar: (email, senha) => {
+      return new
